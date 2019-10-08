@@ -1,6 +1,8 @@
 <template>
   <div>
-    <b-container>
+    <b-spinner v-if="loading" label="Loading..."></b-spinner>
+
+    <b-container v-else>
       <b-row>
         <b-col sm="4" v-for="anime in animes" v-bind:key="anime.mal_id">
           <AnimeCard :name="anime.title" :description="anime.synopsis" :img="anime.image_url" />
@@ -21,12 +23,14 @@ export default {
   },
   data() {
     return {
-      animes: []
+      animes: [],
+      loading: true
     };
   },
   mounted() {
     AnimeService.getSeason("2019", "fall").then(result => {
       this.animes = result.anime;
+      this.loading = false;
     });
   }
 };
