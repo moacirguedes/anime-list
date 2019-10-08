@@ -1,5 +1,13 @@
 <template>
   <div>
+    <b-container>
+      <span>Year: {{ year }}</span>
+      <b-form-input v-model="year" type="range" min="1997" max="2019" v-on:change="getAnimes"></b-form-input>
+      <b-form-select v-model="season" :options="seasonOptions" v-on:change="getAnimes"></b-form-select>
+      <br />
+      <br />
+    </b-container>
+
     <b-spinner v-if="loading" label="Loading..."></b-spinner>
 
     <b-container v-else>
@@ -30,14 +38,28 @@ export default {
   data() {
     return {
       animes: [],
-      loading: true
+      loading: true,
+      year: "2019",
+      season: "summer",
+      seasonOptions: [
+        { value: "summer", text: "Summer" },
+        { value: "spring", text: "Spring" },
+        { value: "fall", text: "Fall" },
+        { value: "winter", text: "Winter" }
+      ]
     };
   },
+  methods: {
+    getAnimes() {
+      this.loading = true;
+      AnimeService.getSeason(this.year, this.season).then(result => {
+        this.animes = result.anime;
+        this.loading = false;
+      });
+    }
+  },
   mounted() {
-    AnimeService.getSeason("2019", "fall").then(result => {
-      this.animes = result.anime;
-      this.loading = false;
-    });
+    this.getAnimes();
   }
 };
 </script>
