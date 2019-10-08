@@ -5,7 +5,13 @@
     <b-container v-else>
       <b-row>
         <b-col sm="4" v-for="anime in animes" v-bind:key="anime.mal_id">
-          <AnimeCard :name="anime.title" :description="anime.synopsis" :img="anime.image_url" />
+          <AnimeCard
+            :name="anime.title"
+            :description="anime.synopsis"
+            :img="anime.image_url"
+            :releaseDate="anime.airing_start"
+            :episodes="anime.episodes"
+          />
           <br />
         </b-col>
       </b-row>
