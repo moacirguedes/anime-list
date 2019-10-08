@@ -1,22 +1,34 @@
 <template>
   <b-card
-    title="Card Title"
-    img-src="https://cdn.myanimelist.net/images/anime/1003/102165.jpg"
-    img-alt="Image"
+    body-class="heightSize"
+    :title="name"
+    :img-src="img"
     img-top
-    tag="article"
-    style="max-width: 20rem;"
     class="mb-2"
+    img-height="350"
+    img-width="225"
   >
-    <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
-
-    <b-button href="#" variant="primary">Go somewhere</b-button>
+    <b-card-text>{{ description }}</b-card-text>
   </b-card>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    name: String,
+    description: String,
+    img: String
+  },
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
+.heightSize {
+  min-height: 250px;
+  max-height: 250px;
+  overflow: auto;
+}
 </style>
