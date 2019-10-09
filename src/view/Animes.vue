@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import AnimeCard from "./AnimeCard";
+import AnimeCard from '../components/AnimeCard'
 import { mapGetters, mapActions } from "vuex";
 
 export default {

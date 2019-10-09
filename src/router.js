@@ -10,12 +10,17 @@ export default new Router({
     {
       path: '/',
       name: 'Animes',
-      component: () => import('./components/Animes.vue')
+      component: () => import('./view/Animes.vue')
     },
     {
       path: '/favorites',
       name: 'Favorites',
-      component: () => import('./components/Favorites.vue')
+      component: () => import('./view/Favorites.vue')
+    },
+    {
+      path: '/:id',
+      name: 'AnimePage',
+      component: () => import('./view/AnimePage.vue')
     }
   ]
 })

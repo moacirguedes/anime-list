@@ -9,7 +9,7 @@ export default new Vuex.Store({
     animes: [],
     loading: true,
     year: '2019',
-    season: 'fall'
+    season: 'winter'
   },
   mutations: {
     getAnimes(state) {

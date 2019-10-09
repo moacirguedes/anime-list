@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Animes</router-link>|
-      <router-link to="/favorites">Favorites</router-link>
+      <router-link to="/favorites">Favorites</router-link>|
+      <a href="">PDF</a>
     </div>
     <router-view />
   </div>
@@ -10,7 +11,7 @@
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
