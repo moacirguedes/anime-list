@@ -29,7 +29,7 @@
 
 <script>
 import AnimeCard from "./AnimeCard";
-import * as AnimeService from "../services/AnimeService";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
@@ -37,10 +37,6 @@ export default {
   },
   data() {
     return {
-      animes: [],
-      loading: true,
-      year: "2019",
-      season: "summer",
       seasonOptions: [
         { value: "summer", text: "Summer" },
         { value: "spring", text: "Spring" },
@@ -49,14 +45,27 @@ export default {
       ]
     };
   },
+  computed: {
+    year: {
+      get() {
+        return this.$store.state.year;
+      },
+      set(value) {
+        this.setYear(value);
+      }
+    },
+    season: {
+      get() {
+        return this.$store.state.season;
+      },
+      set(value) {
+        this.setSeason(value);
+      }
+    },
+    ...mapGetters(["animes", "loading"])
+  },
   methods: {
-    getAnimes() {
-      this.loading = true;
-      AnimeService.getSeason(this.year, this.season).then(result => {
-        this.animes = result.anime;
-        this.loading = false;
-      });
-    }
+    ...mapActions(["getAnimes", "setYear", "setSeason"])
   },
   mounted() {
     this.getAnimes();
