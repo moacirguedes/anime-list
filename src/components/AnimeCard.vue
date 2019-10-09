@@ -8,16 +8,14 @@
     img-height="350"
     img-width="225"
   >
-    <b-card-text>
-      {{ description }}
-      <br />
-      Release date: {{ releaseDate | date }}
-      <br />
-      Episodes: {{ episodes !== null ? episodes : 'unknown' }}
-    </b-card-text>
-    <footer>
-      <b-button variant="outline-primary">Button</b-button>
-    </footer>
+    <b-card-body>
+      <b-card-text>{{ description }}</b-card-text>
+    </b-card-body>
+    <template v-slot:footer>
+      <router-link :to="{ name: 'AnimePage', params: { id: id } }" target="_blank">
+        <b-button>More info</b-button>
+      </router-link>
+    </template>
     <br />
   </b-card>
 </template>
@@ -29,17 +27,11 @@ export default {
   props: {
     name: String,
     description: String,
-    releaseDate: String,
-    episodes: Number,
-    img: String
+    img: String,
+    id: Number
   },
   data() {
     return {};
-  },
-  filters: {
-    date(value) {
-      return moment(value).format("DD/MM/YYYY");
-    }
   }
 };
 </script>

@@ -32,14 +32,3 @@ export const getAnimePictures = async (id) => {
     console.error(error);
   }
 }
-
-export const getAnimeVideos = async (id) => {
-  try {
-    const {
-      data
-    } = await HttpService.get(`anime/${id}/videos`);
-    return(data);
-  } catch (error) {
-    console.error(error);
-  }
-}

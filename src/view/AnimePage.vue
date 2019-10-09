@@ -13,23 +13,43 @@
               <b-col>
                 <b-card-body>
                   <b-card-text>
-                    <p>English title: {{ anime.title_english }}</p>
-                    <p>Status: {{ anime.status }}</p>
-                    <p>Aired: {{ anime.aired.string }}</p>
-                    <p>Episodes: {{ anime.episodes !== null ? anime.episodes : 'unknown' }}</p>
-                    <p>Duration: {{ anime.duration }}</p>
-                    <p>
-                      Genres:
-                      <span v-for="(genre, index) in anime.genres" v-bind:key="genre.mal_id">
-                        <span v-if="index !== last">{{ genre.name + ", "}}</span>
-                        <span v-else>{{ genre.name }}</span>
-                      </span>
-                    </p>
+                    <br />
+                    <br />
+                    <br />
+                    <h5>
+                      <p
+                        v-if="anime.title_english !== null"
+                      >English title: {{ anime.title_english }}</p>
+                      <p>Status: {{ anime.status }}</p>
+                      <p>Aired: {{ anime.aired.string }}</p>
+                      <p>Episodes: {{ anime.episodes !== null ? anime.episodes : 'unknown' }}</p>
+                      <p>Duration: {{ anime.duration }}</p>
+                      <p>
+                        Genres:
+                        <span
+                          v-for="(genre, index) in anime.genres"
+                          v-bind:key="genre.mal_id"
+                        >
+                          <span v-if="index !== last">{{ genre.name + ", "}}</span>
+                          <span v-else>{{ genre.name }}</span>
+                        </span>
+                      </p>
+                    </h5>
                   </b-card-text>
                 </b-card-body>
               </b-col>
             </b-row>
           </b-card>
+          <br />
+          <div class="image-container">
+            <div
+              class="image-item"
+              v-for="(picture, index) in animePictures.pictures"
+              v-bind:key="index"
+            >
+              <b-img :src="picture.small"></b-img>
+            </div>
+          </div>
         </div>
       </b-jumbotron>
     </b-container>
@@ -44,7 +64,6 @@ export default {
     return {
       anime: [],
       animePictures: [],
-      animeVideos: [],
       loading: true
     };
   },
@@ -63,11 +82,35 @@ export default {
       this.animePictures = response;
     });
 
-    AnimeService.getAnimeVideos(this.$route.params.id).then(response => {
-      this.animeVideos = response;
-    });
-
     this.loading = false;
   }
 };
 </script>
+
+<style>
+.image-container {
+  height: 330px;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.image-item {
+  position: relative;
+  display: inline-block;
+  margin: 10px 70px;
+  box-shadow: 2px 2px 4px #bbb;
+  border-top-right-radius: 4px;
+  width: 116px;
+  height: 158px;
+  vertical-align: bottom;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image-item:first-of-type {
+  margin-left: -10px;
+}
+</style>

@@ -17,8 +17,7 @@
             :name="anime.title"
             :description="anime.synopsis"
             :img="anime.image_url"
-            :releaseDate="anime.airing_start"
-            :episodes="anime.episodes"
+            :id="anime.mal_id"
           />
           <br />
         </b-col>
