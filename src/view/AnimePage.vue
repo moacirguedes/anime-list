@@ -75,7 +75,7 @@ export default {
       animePictures: [],
       loading: true,
       checked: "",
-      id: "",
+      ids: [],
       updatingFav: false
     };
   },
@@ -90,10 +90,14 @@ export default {
       this.anime = response;
 
       AnimeService.getFavorites().then(response => {
-        const id = response.findIndex(f => f.mal_id == this.$route.params.id);
-        if (id != -1) {
+        const ids = response
+          .filter(f => f.mal_id == this.$route.params.id)
+          .map(obj => {
+            return obj.id;
+          });
+        if (ids.length != 0) {
           this.checked = true;
-          this.id = id;
+          this.ids = ids;
         }
       });
     });
@@ -106,12 +110,26 @@ export default {
   methods: {
     update() {
       this.updatingFav = true;
-      if (this.checked) {
-        //MONTAR O OBJETO AQUI E ADD
+      if (!this.checked) {
+        const favorite = {
+          mal_id: this.anime.mal_id,
+          title: this.anime.title,
+          synopsis: this.anime.synopsis,
+          image_url: this.anime.image_url
+        };
+        AnimeService.createFavorite(favorite).then(response => {
+          this.ids.push(response.data.id);
+        });
       } else {
-        //MANDAR O DELETAO AQUI
+        this.ids.forEach(id => {
+          AnimeService.deleteFavorite(id).then(() => {
+            this.ids.pop();
+          });
+        });
       }
-      this.updatingFav = false;
+      setTimeout(() => {
+        this.updatingFav = false;
+      }, 1000);
     }
   }
 };

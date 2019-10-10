@@ -6,7 +6,7 @@ if (window.location.href.indexOf("localhost") > 0){
   URL = 'http://localhost:3000/';
 }
 else {
-  URL = 'http://my-json-server.typicode.com/moacirguedes/anime-list/';
+  URL = 'https://moacaserver.herokuapp.com/';
 }
 
 const AxiosService = axios.create({
