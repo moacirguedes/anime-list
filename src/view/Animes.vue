@@ -14,10 +14,7 @@
       <b-row>
         <b-col sm="4" v-for="anime in animes" v-bind:key="anime.mal_id">
           <AnimeCard
-            :name="anime.title"
-            :description="anime.synopsis"
-            :img="anime.image_url"
-            :id="anime.mal_id"
+            :anime="anime"
           />
           <br />
         </b-col>
@@ -27,7 +24,7 @@
 </template>
 
 <script>
-import AnimeCard from '../components/AnimeCard'
+import AnimeCard from "../components/AnimeCard";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

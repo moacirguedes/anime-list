@@ -1,18 +1,18 @@
 <template>
   <b-card
     body-class="heightSize"
-    :title="name"
-    :img-src="img"
+    :title="anime.title"
+    :img-src="anime.image_url"
     img-top
     class="mb-2"
     img-height="350"
     img-width="225"
   >
     <b-card-body>
-      <b-card-text>{{ description }}</b-card-text>
+      <b-card-text>{{ anime.synopsis }}</b-card-text>
     </b-card-body>
     <template v-slot:footer>
-      <router-link :to="{ name: 'AnimePage', params: { id: id } }" target="_blank">
+      <router-link :to="{ name: 'AnimePage', params: { id: anime.mal_id } }" target="_blank">
         <b-button>More info</b-button>
       </router-link>
     </template>
@@ -21,15 +21,10 @@
 </template>
 
 <script>
+
 export default {
   props: {
-    name: String,
-    description: String,
-    img: String,
-    id: Number
-  },
-  data() {
-    return {};
+    anime: Object
   }
 };
 </script>

@@ -36,8 +36,10 @@ export const getAnimePictures = async (id) => {
 
 export const getFavorites = async () => {
   try {
-    const response = await AxiosService.get('favorites');
-    return response;
+    const {
+      data
+    } = await AxiosService.get('favorites');
+    return data;
   } catch (error) {
     console.error(error);
   }
@@ -46,6 +48,15 @@ export const getFavorites = async () => {
 export const createFavorite = async (favorite) => {
   try {
     const response = await AxiosService.post('favorites', favorite);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const deleteFavorite = async (id) => {
+  try {
+    const response = await AxiosService.delete(`favorites/${id}`);
     return response;
   } catch (error) {
     console.error(error);

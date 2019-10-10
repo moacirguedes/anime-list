@@ -51,6 +51,15 @@
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <b-form-checkbox
+          v-model="checked"
+          switch
+          size="lg"
+          :disabled="updatingFav"
+          @change="update"
+        >Favorite</b-form-checkbox>
       </b-jumbotron>
     </b-container>
   </div>
@@ -64,7 +73,10 @@ export default {
     return {
       anime: [],
       animePictures: [],
-      loading: true
+      loading: true,
+      checked: "",
+      id: "",
+      updatingFav: false
     };
   },
   computed: {
@@ -76,13 +88,31 @@ export default {
     AnimeService.getAnime(this.$route.params.id).then(response => {
       if (response === undefined) this.$router.push("/");
       this.anime = response;
+
+      AnimeService.getFavorites().then(response => {
+        const id = response.findIndex(f => f.mal_id == this.$route.params.id);
+        if (id != -1) {
+          this.checked = true;
+          this.id = id;
+        }
+      });
     });
 
     AnimeService.getAnimePictures(this.$route.params.id).then(response => {
       this.animePictures = response;
     });
-
     this.loading = false;
+  },
+  methods: {
+    update() {
+      this.updatingFav = true;
+      if (this.checked) {
+        //MONTAR O OBJETO AQUI E ADD
+      } else {
+        //MANDAR O DELETAO AQUI
+      }
+      this.updatingFav = false;
+    }
   }
 };
 </script>
