@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/">Animes</router-link>|
       <router-link to="/favorites">Favorites</router-link>|
-      <a href="">PDF</a>
+      <a href="https://docs.google.com/document/d/1GTcH5mkeAcOjII9jmXMxaLQ5B1fP45CO2xU6RbZdXPA/edit?usp=sharing">PDF</a>
     </div>
     <router-view />
   </div>

@@ -1,29 +1,36 @@
 # anime-list
 
-## Project setup
+## Instalation
+
+First clone this repository
+
 ```
-npm install
+ $ git clone https://github.com/moacirguedes/anime-list
+
+ $ cd anime-list
+
 ```
 
-### Compiles and hot-reloads for development
+Then install the dependencies
+
 ```
-npm run serve
+$ npm install
 ```
 
-### Compiles and minifies for production
+then run the local json-server
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
+$ cd db
+$ npm start
 ```
 
-### Lints and fixes files
+and now in another terminal you can run the application with
+
 ```
-npm run lint
+$ npm run serve
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+it should be running on ```localhost:8080```
+
+____________________________
+
+
