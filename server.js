@@ -1,3 +1,11 @@
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
+
+server.use(middlewares);
+server.use(router);
+
 const express = require('express');
 const path = require('path');
 const history = require('connect-history-api-fallback')
