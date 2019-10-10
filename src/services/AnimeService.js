@@ -1,5 +1,5 @@
 import HttpService from './HttpService';
-import axios from 'axios';
+import AxiosService from './AxiosService';
 
 export const getSeason = async (year, season) => {
   try {
@@ -36,7 +36,7 @@ export const getAnimePictures = async (id) => {
 
 export const getFavorites = async () => {
   try {
-    const response = await axios.get('localhost:3000/favorites');
+    const response = await AxiosService.get('favorites');
     return response;
   } catch (error) {
     console.error(error);
@@ -45,7 +45,7 @@ export const getFavorites = async () => {
 
 export const createFavorite = async (favorite) => {
   try {
-    const response = await axios.post('localhost:3000/favorites', favorite);
+    const response = await AxiosService.post('favorites', favorite);
     return response;
   } catch (error) {
     console.error(error);
