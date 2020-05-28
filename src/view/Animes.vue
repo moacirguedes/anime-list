@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <span>Year: {{ year }}</span>
-      <b-form-input v-model="year" type="range" min="1997" max="2019" v-on:change="getAnimes"></b-form-input>
+      <b-form-input v-model="year" type="range" min="1997" max="2020" v-on:change="getAnimes"></b-form-input>
       <b-form-select v-model="season" :options="seasonOptions" v-on:change="getAnimes"></b-form-select>
       <br />
       <br />
