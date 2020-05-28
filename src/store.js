@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     animes: [],
     loading: true,
-    year: '2019',
+    year: '2020',
     season: 'winter',
     favorites: [],
     loadingFavorites: true
